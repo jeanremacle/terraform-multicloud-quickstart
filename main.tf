@@ -73,20 +73,22 @@ resource "zerotier_token" "this" {
 # # Amazon Web Services
 # #
 
-# module "aws" {
-#   source            = "./modules/aws"
-#   for_each          = { for k, v in var.instances : k => v if k == "aws" && v.enabled }
-#   name              = "aws"
-#   cidr_block        = "192.168.0.0/16"
-#   availability_zone = "us-east-1a"
-#   instance_type     = "t3.micro"
-#   dnsdomain         = zerotier_network.demolab.name
-#   pod_cidr          = "10.42.2.1/24"
-#   script            = "init-demolab.tpl"
-#   svc               = var.users
-#   zt_identity       = zerotier_identity.instances["aws"]
-#   zt_network        = zerotier_network.demolab.id
-# }
+module "aws" {
+  source            = "./modules/aws"
+  for_each          = { for k, v in var.instances : k => v if k == "aws" && v.enabled }
+  name              = "aws"
+  cidr_block        = "192.168.0.0/16"
+  availability_zone = "us-east-1a"
+  instance_type     = "t3.micro"
+  dnsdomain         = zerotier_network.demolab.name
+  pod_cidr          = "10.42.2.1/24"
+  script            = "init-demolab.tpl"
+  svc               = var.users
+  zeronsd           = true
+  zt_identity       = zerotier_identity.instances["aws"]
+  zt_network        = zerotier_network.demolab.id
+  zt_token          = zerotier_token.this.token
+}
 
 # #
 # # Google Compute Platform
@@ -131,22 +133,24 @@ resource "zerotier_token" "this" {
 # # Oracle Cloud Infrastructure
 # #
 
-# variable "compartment_id" { default = "set_me_as_a_TF_VAR_" }
+variable "compartment_id" { default = "set_me_as_a_TF_VAR_" }
 
-# module "oci" {
-#   source         = "./modules/oci"
-#   for_each       = { for k, v in var.instances : k => v if k == "oci" && v.enabled }
-#   name           = "oci"
-#   vpc_cidr       = "192.168.0.0/16"
-#   subnet_cidr    = "192.168.1.0/24"
-#   compartment_id = var.compartment_id
-#   dnsdomain      = zerotier_network.demolab.name
-#   pod_cidr       = "10.42.5.1/24"
-#   script         = "init-demolab.tpl"
-#   svc            = var.users
-#   zt_identity    = zerotier_identity.instances["oci"]
-#   zt_network     = zerotier_network.demolab.id
-# }
+module "oci" {
+  source         = "./modules/oci"
+  for_each       = { for k, v in var.instances : k => v if k == "oci" && v.enabled }
+  name           = "oci"
+  vpc_cidr       = "192.168.0.0/16"
+  subnet_cidr    = "192.168.1.0/24"
+  compartment_id = var.compartment_id
+  dnsdomain      = zerotier_network.demolab.name
+  pod_cidr       = "10.42.5.1/24"
+  script         = "init-demolab.tpl"
+  svc            = var.users
+  zeronsd        = true
+  zt_identity    = zerotier_identity.instances["oci"]
+  zt_network     = zerotier_network.demolab.id
+  zt_token       = zerotier_token.this.token
+}
 
 # #
 # # IBM Cloud
