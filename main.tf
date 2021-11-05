@@ -73,22 +73,22 @@ resource "zerotier_token" "this" {
 # # Amazon Web Services
 # #
 
-module "aws" {
-  source            = "./modules/aws"
-  for_each          = { for k, v in var.instances : k => v if k == "aws" && v.enabled }
-  name              = "aws"
-  cidr_block        = "192.168.0.0/16"
-  availability_zone = "us-east-1a"
-  instance_type     = "t3.micro"
-  dnsdomain         = zerotier_network.demolab.name
-  pod_cidr          = "10.42.2.1/24"
-  script            = "init-demolab.tpl"
-  svc               = var.users
-  zeronsd           = true
-  zt_identity       = zerotier_identity.instances["aws"]
-  zt_network        = zerotier_network.demolab.id
-  zt_token          = zerotier_token.this.token
-}
+# module "aws" {
+#   source            = "./modules/aws"
+#   for_each          = { for k, v in var.instances : k => v if k == "aws" && v.enabled }
+#   name              = "aws"
+#   cidr_block        = "192.168.0.0/16"
+#   availability_zone = "us-east-1a"
+#   instance_type     = "t3.micro"
+#   dnsdomain         = zerotier_network.demolab.name
+#   pod_cidr          = "10.42.2.1/24"
+#   script            = "init-demolab.tpl"
+#   svc               = var.users
+#   zeronsd           = true
+#   zt_identity       = zerotier_identity.instances["aws"]
+#   zt_network        = zerotier_network.demolab.id
+#   zt_token          = zerotier_token.this.token
+# }
 
 # #
 # # Google Compute Platform
