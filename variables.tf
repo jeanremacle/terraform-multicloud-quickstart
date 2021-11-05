@@ -2,25 +2,21 @@
 variable "users" {
   default = {
     alice = {
-      username   = "alice"
-      ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGxBkqXD41K8LfyJrjf8PSrxsNqhNUlWfqIzM52iWy+B alice@sean.io"
-    }
-    bob = {
-      username   = "bob"
-      ssh_pubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPxC8oiMHeqcTH507iWJbHs/4/yx3vOOBDf/n6Eowj7 bob@sean.io"
+      username   = "jean"
+      ssh_pubkey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDEyEbdO90Acv4U+BhS1wQuZYuf75+NBcyoeBzTWBPJrgDO4C7bb4TrO9r+Sw3bi2QWTrc1ZnC9uByvTtMXZcoOz0q5Xxoc4/xfia5Ktqqv2FiZYBvFwMDsQI9A5X/7cu+7jhORwpnF8ZqFOIlHaQLwndrznnKxzGhqIQBFQIg+U63X3ht4gnarYUZ+V9HxdzkbXm+vX+r40OzJnwHpQ2e9MGmIOekmtG6IkrYLffshwYtWGVL+iD+1CkGVsEEhovhfX6nHZAlUeCsH40Li6VGA0ikFFqeCcYmA++i4d8W2Rkwl3VhOaS3fhZraPgs+EukPzEAmSTgtqsXwz1aJ15/GgUACVesWbGhuVXh3niz4bZmxGo5XX5LdaaI57uWN2un95uFCsJihCml9j64qWQajvdBInljUelr5GWJBzI0xEHueZpgD6krwTo89CdulVjNumyY64oXXMzkf2U4hP8HfURug4rOc9r33TrShb8aV5LsHmNuutr8dKPnGNg7ySqcPXnkbgba4tKsnmS/jCnx24KxT+LztERyi0PrIc1ifkER1T/zf2R+f8+rnAsZMU68UwSZU83Gcb3/rAu3DC1+GTKHeEq3avw0CihCE9wLGEE3ganCedLhvfs8DjOVrE9V4h6nCdWUs0vHP0zWH+r96det9hQ1sVxMG9CoteTVwgQ== MPro-01@remacle.eu"
     }
   }
 }
 
 variable "devices" {
   default = {
-    laptop = {
-      member_id   = "a11c3411ce"
-      description = "alice laptop"
+    mbpro = {
+      member_id   = "dffeed2ff4"
+      description = "Jean's mb pro"
     }
-    workstation = {
-      member_id   = "b0bd0bb0bb"
-      description = "bob's desktop"
+    ipad = {
+      member_id   = "39a366f92a"
+      description = "Jean's ipad-pro"
     }
   }
 }
@@ -30,7 +26,7 @@ variable "instances" {
     do = {
       description   = "Digital Ocean"
       ip_assignment = "10.0.1.1"
-      enabled       = true
+      enabled       = false
     }
     aws = {
       description   = "Amazon Web Services"
@@ -40,12 +36,12 @@ variable "instances" {
     gcp = {
       description   = "Google Compute Platform"
       ip_assignment = "10.0.3.1"
-      enabled       = true
+      enabled       = false
     }
     azu = {
       description   = "Microsoft Azure"
       ip_assignment = "10.0.4.1"
-      enabled       = true
+      enabled       = false
     }
     oci = {
       description   = "Oracle Cloud Infrastructure"
@@ -55,22 +51,22 @@ variable "instances" {
     ibm = {
       description   = "IBM Cloud"
       ip_assignment = "10.0.6.1"
-      enabled       = true
+      enabled       = false
     }
     vul = {
       description   = "Vultr"
       ip_assignment = "10.0.7.1"
-      enabled       = true
+      enabled       = false
     }
     ali = {
       description   = "Alibaba Cloud"
       ip_assignment = "10.0.8.1"
-      enabled       = true
+      enabled       = false
     }
     eqx = {
       description   = "Equinix Metal"
       ip_assignment = "10.0.9.1"
-      enabled       = true
+      enabled       = false
     }
   }
 }
