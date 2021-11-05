@@ -21,9 +21,9 @@ resource "zerotier_network" "demolab" {
   route {
     target = "10.0.0.0/16"
   }
-  flow_rules = templatefile("${path.module}/flow_rules.tpl", {
-    ethertap = zerotier_identity.instances["do"].id
-  })
+  # flow_rules = templatefile("${path.module}/flow_rules.tpl", {
+  #   ethertap = zerotier_identity.instances["do"].id
+  # })
 }
 
 resource "zerotier_member" "devices" {
